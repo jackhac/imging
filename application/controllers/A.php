@@ -7,18 +7,17 @@ class A extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('post','',TRUE);
+		$this->load->model('topic','',TRUE);
 	}
 
-	public function index($id = NULL)
+	public function index($code = NULL)
 	{
-		if ($id==null)
+		if ($code==null)
 		{
 			show_404();
 		}
 		
-		$result = $this->post->get_post($id);
-		
-		
+		$result = $this->post->get_post($code);
 		
 		if($result)
 	    {
@@ -35,12 +34,27 @@ class A extends CI_Controller {
 				$data['timesince'] = $date->days.' day(s)';
 			}
 		}
+		
+		$result = $this->topic->get_topics();
+		
+		if($result)
+	    {
+			$topics = array();
+			$index=0;
+			foreach($result as $row)
+			{
+				$topics[$index] = $row->topic; 
+				$index++;
+			}
+		}
 
+		$data['topics'] = $topics;
+		
 		$data['title'] = 'IMGing';
 		$data['base_url'] = base_url();
-		$data['id'] = $id;
+		$data['code'] = $code;
 		$this->load->view('partials/header', $data);
-		$this->load->view('post',$data);
+		$this->load->view('Post',$data);
 		$this->load->view('partials/footer');
 		
 	}

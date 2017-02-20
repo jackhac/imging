@@ -1,0 +1,16 @@
+[28-Jan-2017 03:02:23 UTC] PHP Fatal error:  Call to a member function get_posts() on null in /home/jackhacattack/public_html/application/controllers/Home.php on line 34
+[28-Jan-2017 03:02:32 UTC] PHP Fatal error:  Call to a member function get_posts() on null in /home/jackhacattack/public_html/application/controllers/Home.php on line 34
+[28-Jan-2017 03:02:33 UTC] PHP Fatal error:  Call to a member function get_posts() on null in /home/jackhacattack/public_html/application/controllers/Home.php on line 34
+[28-Jan-2017 03:08:35 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/jackhacattack/public_html/application/models/Post.php on line 50
+[28-Jan-2017 03:09:00 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/jackhacattack/public_html/application/models/Post.php on line 50
+[28-Jan-2017 03:09:02 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/jackhacattack/public_html/application/models/Post.php on line 50
+[12-Feb-2017 01:03:25 UTC] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/jackhacattack/public_html/application/views/GalleryPost.php on line 39
+[12-Feb-2017 01:09:05 UTC] PHP Fatal error:  Call to a member function getComments() on null in /home/jackhacattack/public_html/application/controllers/Gallery.php on line 38
+[12-Feb-2017 01:09:43 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting ',' or ';' in /home/jackhacattack/public_html/application/models/Comment.php on line 7
+[12-Feb-2017 01:11:26 UTC] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC), expecting ',' or ';' in /home/jackhacattack/public_html/application/models/Comment.php on line 7
+[18-Feb-2017 20:10:12 UTC] PHP Fatal error:  Call to undefined method Topic::get_topics() in /home/jackhacattack/public_html/application/controllers/A.php on line 38
+[18-Feb-2017 20:12:01 UTC] PHP Parse error:  syntax error, unexpected 'title' (T_STRING) in /home/jackhacattack/public_html/application/controllers/A.php on line 53
+[20-Feb-2017 01:32:26 UTC] PHP Fatal error:  Call to undefined method CI_Input::generate_code() in /home/jackhacattack/public_html/application/controllers/Home.php on line 52
+[20-Feb-2017 01:45:28 UTC] PHP Fatal error:  Call to undefined method Post::insert_image() in /home/jackhacattack/public_html/application/controllers/Home.php on line 68
+[20-Feb-2017 01:46:06 UTC] PHP Fatal error:  Call to undefined method Image::insert_image() in /home/jackhacattack/public_html/application/controllers/Home.php on line 69
+[20-Feb-2017 01:47:23 UTC] PHP Fatal error:  Call to undefined method Image::insert_image() in /home/jackhacattack/public_html/application/controllers/Home.php on line 69

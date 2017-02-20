@@ -25,7 +25,7 @@ class Account extends CI_Controller {
 			$data['title'] = 'IMGing';
 			$data['base_url'] = base_url();
 			$this->load->view('partials/header', $data);
-			$this->load->view('login');
+			$this->load->view('Login');
 			$this->load->view('partials/footer');
 		}
 		else
@@ -42,7 +42,7 @@ class Account extends CI_Controller {
 		$data['title'] = 'IMGing';
 		$data['base_url'] = base_url();
 		 $this->load->view('partials/header', $data);
-		$this->load->view('login');
+		$this->load->view('Login');
 		$this->load->view('partials/footer'); 
 	}
 	
@@ -53,7 +53,7 @@ class Account extends CI_Controller {
 		$data['title'] = 'IMGing';
 		$data['base_url'] = base_url();
 		 $this->load->view('partials/header', $data);
-		$this->load->view('register');
+		$this->load->view('Register');
 		$this->load->view('partials/footer'); 
 	}
 	
@@ -104,7 +104,7 @@ class Account extends CI_Controller {
 		$data['title'] = 'IMGing';
 		$data['base_url'] = base_url();
 		$this->load->view('partials/header', $data);
-		$this->load->view('register');
+		$this->load->view('Register');
 		$this->load->view('partials/footer');
 		}
 		else
@@ -121,7 +121,7 @@ class Account extends CI_Controller {
 			$data['title'] = 'IMGing';
 		$data['base_url'] = base_url();
 		$this->load->view('partials/header', $data);
-		$this->load->view('profile');
+		$this->load->view('Profile');
 		$this->load->view('partials/footer');
 		}
 		else

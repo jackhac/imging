@@ -14,45 +14,43 @@ class Post extends CI_Model
 		$this->load->library('s3');
 	}
 	
-	function form_insert($title2)
+	function insert_post($code, $user, $timestamp, $type, $public_status)
 	{
+		$post = array(
+			'code' => $code,
+			'user' => $user,
+			'timestamp' => $timestamp,
+			'type' => $type,
+			'public_status' => $public_status
+		);
+		
+		$this->db->insert('posts', $post);
+		
+		return $this->db->insert_id();
+	}
+	
+	function delete_post($id)
+	{
+		
+	}
+	
+	function generate_code()
+	{
+		$randomString = '';
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$charactersLength = strlen($characters);
-		$randomString = '';
 		
 		for ($i = 0; $i <10; $i++) 
 		{
 			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
-					
-		$idx = strpos($_FILES['file']['name'],'.');
-		$ext = substr($_FILES['file']['name'],$idx);
-				
-		$_FILES['file']['name']=$randomString.$ext;
-			
-		$this->s3->putObject($this->s3->inputFile($_FILES['file']['tmp_name']), 'imgingdata', $_FILES['file']['name'], 'public-read', 'REDUCED_REDUNDANCY');
 		
-		//insert into database
-		
-		$data = array(
-			'filename' => $_FILES['file']['name'],
-			'code' => $randomString,
-			'user' => $_SESSION['logged_in'],
-			'timestamp' => date("Y-m-d H:i:s"),
-			'title' => $title2
-		);
-		$this->db->insert('images', $data);
-		
-		//do status logic
-		
-		$this->session->set_flashdata('status',0);
-				
-		redirect('A/index/'.$this->db->insert_id());
+		return $randomString;
 	}
 	
-	function get_post($id=null)
+	function get_post($code=null)
 	{
-		$query = $this->db->query('SELECT id, filename, code, title, user, (select count(*) from views where post='.$id.') views, timestamp FROM images where id='.$id.'');
+		$query = $this->db->query('SELECT id, code, title, description, user, (select filename from images images where post=posts.id limit 1) filename, (select count(*) from views where post=posts.id) views, timestamp FROM posts posts where code="'.$code.'"');
 		
 		if($query -> num_rows() == 1)
 		{
@@ -62,7 +60,7 @@ class Post extends CI_Model
 	
 	function get_posts($num=null)
 	{
-		$query = $this->db->query('SELECT id, filename, code, title, user, (select count(*) from views views where post=images.id) views, timestamp FROM images images limit '.$num);
+		$query = $this->db->query('SELECT id, code, title, description, user, (select filename from images images where post=posts.id limit 1) filename, (select count(*) from views views where post=posts.id) views, timestamp FROM posts posts limit '.$num);
 		
 		return $query->result();
 	}

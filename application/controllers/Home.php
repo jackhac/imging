@@ -22,8 +22,9 @@ class Home extends CI_Controller {
 	 function __construct()
 	{
 		parent::__construct();
-		$this->load->model('post','',TRUE);
-		 $this->load->library('s3');
+		$this->load->model('post');
+		$this->load->model('image');
+		$this->load->library('s3');
 	}
 	
 	public function index()
@@ -33,6 +34,8 @@ class Home extends CI_Controller {
 		
 		$result = $this->post->get_posts(20);
 		
+		//$result = $this->post->ge
+		
 		if($result)
 	    {
 		 $data['post'] = $result;
@@ -41,15 +44,36 @@ class Home extends CI_Controller {
 		$data['title'] = 'IMGing';
 		$data['base_url'] = base_url();
 		$this->load->view('partials/header', $data);
-		$this->load->view('home');
+		$this->load->view('Home');
 		$this->load->view('partials/footer');
 	}
 	
 	public function upload() 
 	{
+		$file_size = $_FILES['file']['size'];
+		$file_type = $_FILES['file']['type'];
 		
-		$this->load->model('Post');
-		$this->Post->form_insert($this->input->post('title2'));
+		if (($file_size > 2097152))
+		{      
+			$this->session->set_flashdata('status',300);
+			redirect('/home');
+		}
+		else
+		{
+			$randomString=$this->post->generate_code();
+			
+			$_FILES['file']['name']=$this->image->rename_image($_FILES['file']['name'],$randomString);
+					
+			$this->s3->putObject($this->s3->inputFile($_FILES['file']['tmp_name']), 'imgingdata', $_FILES['file']['name'], 'public-read', 'REDUCED_REDUNDANCY');
+			
+			//insert into database
+			
+			$post_id=$this->post->insert_post($randomString, $this->session->logged_in, date("Y-m-d H:i:s"), 1, 0);
+			
+			$this->image->insert_image($_FILES['file']['name'], $post_id, date("Y-m-d H:i:s"));
+					
+			redirect('A/'.$randomString);
+		}
 		
     }
 }

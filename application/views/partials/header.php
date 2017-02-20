@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title><?php echo $title; ?></title>
 	<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>">
 	<!-- Optional theme -->
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/bootstrap_new.css"); ?>" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css" rel="stylesheet" integrity="sha384-D9XILkoivXN+bcvB2kSOowkIvIcBbNdoDQvfBNsxYAIieZbx8/SI4NeUvrRGCpDi" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/custom.min.css"); ?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/default.css"); ?>" />
 </head>
@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li>
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
 				New Post
 				</button>
 			</li>
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="modal-body">
 		<?php echo validation_errors(); ?>
 		<?php echo form_open_multipart('home/upload');?>
-			<input class="form-control" name="title2" id="title2" placeholder="Give your post a title..."><br>
+			
 			<input name="file" id="file" type="file" /><br>
 			<button type="submit" class="btn btn-primary">Upload</button>
 		</form>
